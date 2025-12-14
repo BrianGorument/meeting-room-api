@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
 
 class AdminMiddleware
 {
@@ -15,7 +15,7 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next) {   
     
-    $user = auth()->user();
+    $user = Auth::user();
 
     if (!$user || $user->role !== 'admin') {
         return response()->json([
@@ -24,4 +24,5 @@ class AdminMiddleware
     }
 
     return $next($request);
+    }
 }
