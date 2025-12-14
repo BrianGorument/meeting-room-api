@@ -18,4 +18,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('/rooms', [RoomController::class, 'create'])->middleware('admin');
     Route::put('/rooms/{id}', [RoomController::class, 'update'])->middleware('admin');
     Route::delete('/rooms/{id}', [RoomController::class, 'delete'])->middleware('admin');
+
+    Route::post('/bookings', [App\Http\Controllers\BookingController::class, 'store']);
+    Route::get('/bookings/my', [App\Http\Controllers\BookingController::class, 'myBookings']);
 });

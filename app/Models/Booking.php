@@ -15,4 +15,19 @@ class Booking extends Model
         'start_datetime',
         'end_datetime',
     ];
+
+    protected $casts = [
+        'start_datetime' => 'datetime:Y-m-d H:i',
+        'end_datetime' => 'datetime:Y-m-d H:i',
+        'created_at' => 'datetime:Y-m-d H:i',
+        'updated_at' => 'datetime:Y-m-d H:i',
+    ];
+
+    public function room()
+    {
+        return $this->belongsTo(Room::class);
+    }
+
 }
+
+

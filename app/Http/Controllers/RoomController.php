@@ -124,7 +124,7 @@ class RoomController extends Controller
 
         return response()->json([
             'date' => $date,
-            'available_slots' => $availableSlots,
+            'available_time_slots' => $availableSlots,
         ]);
     }
 

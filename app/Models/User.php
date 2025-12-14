@@ -53,11 +53,15 @@ class User extends Authenticatable implements JWTSubject
             return $this->getKey();
         }
 
-        public function getJWTCustomClaims(): array
+    public function getJWTCustomClaims(): array
         {
             return [
                 'role' => $this->role,
             ];
         }
-
+    
+     protected $casts = [
+        'created_at' => 'datetime:Y-m-d H:i',
+        'updated_at' => 'datetime:Y-m-d H:i',
+    ];
 }
