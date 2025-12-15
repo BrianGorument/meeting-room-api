@@ -1,0 +1,480 @@
+{
+	"info": {
+		"_postman_id": "4a1037a8-35c5-4dae-b7cc-a2fd27cd6a7c",
+		"name": "Meeting_rooms_booking",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34753385"
+	},
+	"item": [
+		{
+			"name": "ADMIN",
+			"item": [
+				{
+					"name": "Login as Admin",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"admin@intalenta.com\",\r\n  \"password\": \"password\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/auth/login",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create room as Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NjU3MzI5NTksImV4cCI6MTc2NTczNjU1OSwibmJmIjoxNzY1NzMyOTU5LCJqdGkiOiIydXNhdHRUT3BDWmhmU085Iiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoiYWRtaW4ifQ.p1QlMZIIz1Fuh3sU5BOZgXIyWpvp98EXIAZSL4SvPHo",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Charlies\" ,\r\n    \"capacity\" : 10\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/rooms",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit room as Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NjU3Mzk5NDIsImV4cCI6MTc2NTc0MzU0MiwibmJmIjoxNzY1NzM5OTQyLCJqdGkiOiJNdWNXU0pDYWtGVDR3SlVuIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoiYWRtaW4ifQ.LTy5Kn5HFHwj_-z4Jzx7C7ypRMvUGtGBXMQ48EVqihQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\" : \"Meeting Room Byson\" ,\r\n    \"capacity\" : 9\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/rooms/2",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"rooms",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete room as Admin",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NjU3Mzk5NDIsImV4cCI6MTc2NTc0MzU0MiwibmJmIjoxNzY1NzM5OTQyLCJqdGkiOiJNdWNXU0pDYWtGVDR3SlVuIiwic3ViIjoiMSIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoiYWRtaW4ifQ.LTy5Kn5HFHwj_-z4Jzx7C7ypRMvUGtGBXMQ48EVqihQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/rooms/3",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"rooms",
+								"3"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Login as User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user1@intalenta.com\",\r\n  \"password\": \"password\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/auth/login",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Room",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NjU3NDU1MjksImV4cCI6MTc2NTc0OTEyOSwibmJmIjoxNzY1NzQ1NTI5LCJqdGkiOiJDRGhMNnA1eThZRkZxdXRjIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoidXNlciJ9.ExJ06p7hd3UFPzwOuXxAvPb2eBYfEvBxmbRa_je4Sk0",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user1@intalenta.com\",\r\n  \"password\": \"password\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/rooms",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"rooms"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Room by ROOM ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NjU3NDAyMzksImV4cCI6MTc2NTc0MzgzOSwibmJmIjoxNzY1NzQwMjM5LCJqdGkiOiJyRmkwNDNObzFUZ0h1RThkIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoidXNlciJ9._iUugDMyE0SkWCOqjlIMFRr-jIlAUiCXc9mn9OrP80U",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"email\": \"user1@intalenta.com\",\r\n  \"password\": \"password\"\r\n}\r\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/rooms/1",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"rooms",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Check Availability by Date",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NjU3NDQyMDEsImV4cCI6MTc2NTc0NzgwMSwibmJmIjoxNzY1NzQ0MjAxLCJqdGkiOiI2cXd0amxRYjNLN3lvS082Iiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoidXNlciJ9.sDYu8YZRZ1GoS83RgKmGwwYhV4qPrWthPcruYz5IM5o",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/rooms/1/availability?date=2025-12-16",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"rooms",
+								"1",
+								"availability"
+							],
+							"query": [
+								{
+									"key": "date",
+									"value": "2025-12-16"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Booking by User credential",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NjU3NDM5NTUsImV4cCI6MTc2NTc0NzU1NSwibmJmIjoxNzY1NzQzOTU1LCJqdGkiOiJmNVI1cHVNb1lDNFNkT0ZoIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoidXNlciJ9.1wTqtqx_hOt3g5ZveNE8pezyhEkZXwST918cZc5G5Jk",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"room_id\": 1,\r\n    \"start_datetime\": \"2025-12-16 12:00\",\r\n    \"end_datetime\": \"2025-12-16 13:00\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/bookings",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"bookings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Booked Room detail by User ID",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2F1dGgvbG9naW4iLCJpYXQiOjE3NjU3NDQ4OTcsImV4cCI6MTc2NTc0ODQ5NywibmJmIjoxNzY1NzQ0ODk3LCJqdGkiOiJKMEN4VEdOdmtkSGpnd0FtIiwic3ViIjoiMiIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjciLCJyb2xlIjoidXNlciJ9.dD18h56vTsIzqP7KbBBbmvdaTQ3-ROcjF7lkJb90EGw",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl-merchant-laravel}}/api/bookings/my",
+							"host": [
+								"{{baseUrl-merchant-laravel}}"
+							],
+							"path": [
+								"api",
+								"bookings",
+								"my"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\": \"Test User\",\r\n  \"email\": \"test@example.com\",\r\n  \"password\": \"password\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl-merchant-laravel}}/api/auth/register",
+					"host": [
+						"{{baseUrl-merchant-laravel}}"
+					],
+					"path": [
+						"api",
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
