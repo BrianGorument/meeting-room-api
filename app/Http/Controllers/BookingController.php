@@ -25,44 +25,29 @@ class BookingController extends Controller
 
         //validate booking time
         if ($start->isPast()) {
-            return response()->json([
-                'message' => 'Cannot book past time'
-            ], 422);
+            return json_error('Tidak bisa memesan waktu yang sudah lewat', 'Cannot book past time', 422);
         }
 
         if ($start->diffInHours($end) < 1) {
-            return response()->json([
-                'message' => 'Minimum booking is 1 hour'
-            ], 422);
+            return json_error('Pemesanan minimal adalah 1 jam', 'Minimum booking is 1 hour', 422);
         }
 
-        // Booking di hari yang sama
         if ($start->toDateString() !== $end->toDateString()) {
-            return response()->json([
-                'message' => 'Booking must be within the same day'
-            ], 422);
+            return json_error('Pemesanan harus pada hari yang sama', 'Booking must be within the same day', 422);
         }
 
-        //booking di jam kerja saja
         if ($start->hour < 8 || $end->hour > 18) {
-            return response()->json([
-                'message' => 'Booking must be between 08:00 and 18:00'
-            ], 422);
+            return json_error('Pemesanan harus antara jam 08:00 dan 18:00', 'Booking must be between 08:00 and 18:00', 422);
         }
 
-        // Booking dengan satuan jam
         if ($start->minute !== 0 || $end->minute !== 0) {
-            return response()->json([
-                'message' => 'Booking must start and end on the hour'
-            ], 422);
+            return json_error('Waktu mulai dan selesai pemesanan harus dalam jam bulat (tanpa menit)', 'Booking must start and end on the hour', 422);
         }
         
         $timenow = now();
 
         if ($end->lessThanOrEqualTo($timenow)) {
-            return response()->json([
-                'message' => 'Cannot book a room that has already ended'
-            ], 422);
+            return json_error('Tidak bisa memesan ruangan yang sesinya sudah berakhir', 'Cannot book a room that has already ended', 422);
         }
         //db transaction
         try {
@@ -79,7 +64,7 @@ class BookingController extends Controller
                 ->exists();
 
                 if ($conflict) {
-                    abort(409, 'Room already booked for this time');
+                    throw new \Exception('Room already booked for this time');
                 }
 
                 return Booking::create([
@@ -96,9 +81,14 @@ class BookingController extends Controller
                 ->setStatusCode(201);
 
         } catch (\Throwable $e) {
-            return response()->json([
-                'message' => $e->getMessage()
-            ], 409);
+            $errorMessage = $e->getMessage();
+            $Message = 'Terjadi kesalahan saat membuat pesanan'; // Generic message
+
+            if (str_contains($errorMessage, 'Room already booked')) {
+                $Message = 'Ruangan sudah dipesan untuk waktu ini';
+            }
+
+            return json_error($Message, $errorMessage, 409);
         }
     }
 

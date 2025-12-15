@@ -12,18 +12,14 @@ class RoomController extends Controller
 {
     public function index()
     {
-        return response()->json([
-            'data' => Room::all()
-        ]);
+        return json_success('Rooms retrieved successfully', Room::all()->toArray());
     }
 
     public function show($id)
     {
         $room = Room::findOrFail($id);
 
-        return response()->json([
-            'data' => $room
-        ]);
+        return json_success('Room retrieved successfully', $room->toArray());
     }
 
     public function create(Request $request)
@@ -35,10 +31,7 @@ class RoomController extends Controller
 
         $room = Room::create($data);
 
-        return response()->json([
-            'message' => 'Room created successfully',
-            'data' => $room
-        ], 201);
+        return json_success('Room created successfully', $room->toArray(), 201);
     }
 
     public function update(Request $request, $id)
@@ -52,10 +45,7 @@ class RoomController extends Controller
 
         $room->update($data);
 
-        return response()->json([
-            'message' => 'Room updated successfully',
-            'data' => $room
-        ]);
+        return json_success('Room updated successfully', $room->toArray());
     }
 
     public function delete($id)
@@ -63,9 +53,7 @@ class RoomController extends Controller
             $room = Room::findOrFail($id);
             $room->delete();
 
-            return response()->json([
-                'message' => 'Room deleted successfully'
-            ]);
+            return json_success('Room deleted successfully');
         }
 
     public function availability(Request $request, $id)
@@ -73,9 +61,7 @@ class RoomController extends Controller
         $date = $request->query('date');
 
         if (!$date) {
-            return response()->json([
-                'message' => 'date query is required (YYYY-MM-DD)'
-            ], 422);
+            return json_error('Query tanggal diperlukan (format: YYYY-MM-DD)', 'date query is required (YYYY-MM-DD)', 422);
         }
 
         $room = Room::findOrFail($id);
@@ -122,7 +108,7 @@ class RoomController extends Controller
             }
         }
 
-        return response()->json([
+        return json_success('Availability retrieved successfully', [
             'date' => $date,
             'available_time_slots' => $availableSlots,
         ]);

@@ -26,8 +26,7 @@ class AuthController extends Controller
 
         $user = User::create($data);
 
-        return response()->json([
-            'message' => 'User registered successfully',
+        return json_success('User registered successfully', [
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
@@ -45,13 +44,10 @@ class AuthController extends Controller
         ]);
 
         if (!$token = JWTAuth::attempt($credentials)) {
-            return response()->json([
-                'message' => 'Invalid credentials'
-            ], 401);
+            return json_error('Email atau Password salah', 'Invalid credentials', 401);
         }
 
-        return response()->json([
-            'message' => 'Login successful',
+        return json_success('Login successful', [
             'token' => $token,
             'token_type' => 'Bearer',
             'expires_in' => JWTAuth::factory()->getTTL() * 60,
